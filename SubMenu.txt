@@ -1,0 +1,14 @@
+                                <div class="d-flex flex-row align-items-center">
+                                    <MudMenu style="width:100%;" ActivationEvent="@MudBlazor.MouseEvent.MouseOver" AnchorOrigin="@MudBlazor.Origin.TopRight" Dense="true">
+                                        <ActivatorContent>
+                                            <MudMenuItem OnClick="()=>SelectedItemChanged.InvokeAsync(context)"> <i class="far fa-chart-mixed text-Success"></i><span class="ml-2">@_viewLocalizer["Reports"]</span></MudMenuItem>
+                                        </ActivatorContent>
+                                        <ChildContent>
+                                            <MudMenuItem> <i class="far fa-chart-line text-secondary"></i><span class="ml-2">@_viewLocalizer["RealTime"]</span></MudMenuItem>
+                                            <MudMenuItem> <i class="far fa-sliders-up text-secondary"></i><span class="ml-2">@_viewLocalizer["CableView"]</span></MudMenuItem>
+                                            <MudMenuItem> <i class="far fa-solar-system text-secondary"></i><span class="ml-2">@_viewLocalizer["LoopView"]</span></MudMenuItem>
+                                            <MudMenuItem> <i class="far fa-calendar-lines text-secondary"></i><span class="ml-2">@_viewLocalizer["Histories"]</span></MudMenuItem>
+                                        </ChildContent>
+                                    </MudMenu>
+                                    <i class="fas fa-caret-right ml-n5" />
+                                </div>

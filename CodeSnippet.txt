@@ -1,0 +1,68 @@
+            <MudTreeView T="SiloItemResponse" Dense=true Width="300px" Hover="true" ExpandOnClick="true" ExpandOnDoubleClick="true">
+                @foreach (var silo in SiloItems)
+                {
+                    <MudTreeViewItem T="SiloItemResponse" Value="silo" Text="@silo.DisplayMember" Icon="fad fa-database fa-1x" >
+                        @foreach (var item in silo.FeaturedSensors)
+                        {
+                            if (item.ItemType == TMS.Shared.Entities.SiloItemTypeEnum.HumiditySensor)
+                            {
+                                <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-droplet-percent" />
+                            }
+                            else
+                            {
+                                <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-temperature-sun" />
+                            }
+                        }
+                        @foreach (var loop in silo.SiloItems)
+                        {
+                            <MudTreeViewItem T="SiloItemResponse" Value="loop" Text="@loop.DisplayMember" Icon="fad fa-temperature">
+                                @foreach (var item in loop.FeaturedSensors)
+                                {
+                                    if (item.ItemType == TMS.Shared.Entities.SiloItemTypeEnum.HumiditySensor)
+                                    {
+                                        <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-droplet-percent" />
+                                    }
+                                    else
+                                    {
+                                        <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-temperature-sun" />
+                                    }
+                                }
+
+                                @foreach (var cable in loop.SiloItems)
+                                {
+                                    <MudTreeViewItem T="SiloItemResponse" Value="cable" Text="@cable.DisplayMember" Icon="fad fa-diagram-nested">
+                                        @foreach (var item in cable.FeaturedSensors)
+                                        {
+                                            if (item.ItemType == TMS.Shared.Entities.SiloItemTypeEnum.HumiditySensor)
+                                            {
+                                                <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-droplet-percent" />
+                                            }
+                                            else
+                                            {
+                                                <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-temperature-sun" />
+                                            }
+                                        }
+
+                                        @foreach (var sensor in cable.SiloItems)
+                                        {
+                                            <MudTreeViewItem T="SiloItemResponse" Value="sensor" Text="@sensor.DisplayMember" Icon="fad fa-temperature" />
+                                            @foreach (var item in sensor.FeaturedSensors)
+                                            {
+                                                if (item.ItemType == TMS.Shared.Entities.SiloItemTypeEnum.HumiditySensor)
+                                                {
+                                                    <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-droplet-percent" />
+                                                }
+                                                else
+                                                {
+                                                    <MudTreeViewItem T="SiloItemResponse" Value="item" Text="@item.DisplayMember" Icon="fad fa-temperature-sun" />
+                                                }
+                                            }
+
+                                        }
+                                    </MudTreeViewItem>
+                                }
+                            </MudTreeViewItem>
+                        }
+                    </MudTreeViewItem>
+                }
+            </MudTreeView>

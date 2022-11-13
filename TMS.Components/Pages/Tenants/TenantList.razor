@@ -1,0 +1,39 @@
+﻿@inherits BaseComponent
+
+<MudList Clickable="true">
+    @foreach (var item in ClientCollection)
+    {
+        <MudPaper Elevation="2" Class="mt-3">
+            <MudListItem Disabled=@(!item.Accessable)  Avatar="@Icons.Outlined.Hub">
+                <div class="d-flex align-items-center justify-content-between">
+
+                    <div class="d-flex align-items-center" style="min-height:50px;">
+                        <div>
+                            <MudText Color="Color.Info" Typo="Typo.inherit">@item.Name</MudText>
+                            @if (!string.IsNullOrWhiteSpace(item.Description))
+                            {
+                                <MudText Typo="Typo.body2">@item.Description</MudText>
+                            }
+                        </div>
+                    </div>
+                    <MudMenu Class="ml-n3" Icon="@Icons.Material.Filled.MoreVert" Dense=true IconColor="Color.Primary">
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Configuration">
+                        <MudMenuItem Color="@Color.Inherit" OnClick="()=>OnSelectionChanged(item)"><i class="fas fa-wrench"></i><span></span></MudMenuItem>
+                        </AuthorizeView>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.AddOrRemoveUsers">
+                            <MudMenuItem Color="@Color.Inherit"><i class="far fa-user-group"></i></MudMenuItem>
+                        </AuthorizeView>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Edit">
+                            <MudMenuItem Color="@Color.Inherit"><i class="far fa-edit" /></MudMenuItem>
+                        </AuthorizeView>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Delete">
+                            <MudMenuItem Color="@Color.Error"><i class="fas fa-trash-can" /></MudMenuItem>
+                        </AuthorizeView>
+
+                    
+                    </MudMenu>
+                </div>
+            </MudListItem>
+        </MudPaper>
+    }
+</MudList>

@@ -1,0 +1,42 @@
+﻿@inherits BaseComponent
+@if (!IsLoading)
+{
+<MudDataGrid T="SensorHistoryResponse"
+             Elevation="2"
+             ColumnResizeMode="ResizeMode.Column"
+             @ref="@_mudDataGrid"
+             ServerData="@(new Func<GridState<SensorHistoryResponse>, Task<GridData<SensorHistoryResponse>>>(ReloadHistoriesAsync))"
+             ReadOnly="false"
+             RowsPerPage="2"
+             EditTrigger="DataGridEditTrigger.Manual"
+             EditMode="DataGridEditMode.Form"
+             Hover="true" Dense="true" Striped="true"
+             FixedHeader="true">
+    <Columns>
+        <Column T="SensorHistoryResponse" Field="@nameof(SensorHistoryResponse.ReadDateTime)" Title="@_contextLocalizer["SensorHistory.ReadDateTime"]" />
+        <Column T="SensorHistoryResponse" Field="@nameof(SensorHistoryResponse.ReadIndex)" Title="@_contextLocalizer["SensorHistory.ReadIndex"]" />
+        <Column T="SensorHistoryResponse" Field="@nameof(SensorHistoryResponse.Value)" Title="@_contextLocalizer["SensorHistory.Value"]" />
+    </Columns>
+    <PagerContent>
+        <div class="d-flex flex-row justify-content-between">
+            <MudTextField T="string"
+                          Class="ml-3 mb-2"
+                          Style="width:40%;"
+                          Margin="Margin.Dense"
+                          ValueChanged="@(s=>OnSearchHistory(s))"
+                          Placeholder="@_viewLocalizer["Search"]"
+                          Adornment="Adornment.Start"
+                          Immediate="false"
+                          Variant="Variant.Text" 
+                          Clearable="true"
+                          AdornmentIcon="@Icons.Material.Filled.Search"
+                          IconSize="Size.Medium"></MudTextField>
+            <MudDataGridPager T=SensorHistoryResponse />
+        </div>
+    </PagerContent>
+</MudDataGrid>
+}
+else
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-0" />
+}

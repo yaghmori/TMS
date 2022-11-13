@@ -1,0 +1,11 @@
+﻿<nav aria-label="breadcrumb" class="@Class">
+    <div class="mt-max-size">
+        <ol class="breadcrumb">
+            @foreach (var link in Items)
+            {
+                <li class="breadcrumb-item"><a class="mt-bread-item-link"><i Class="@link.Icon fa-lg" /> @link.DisplayMember</a></li>
+            }
+        </ol>
+    </div>
+</nav>
+

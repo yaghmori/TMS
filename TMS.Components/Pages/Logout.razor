@@ -1,0 +1,10 @@
+﻿@page "/Logout"
+@using TMS.Core.Application.Authorization;
+@code {
+    protected async override Task OnInitializedAsync()
+    {
+        await ((AuthStateProvider)_authStateProvider).NotifyLogoutAsync();
+        _navigationManager.NavigateTo(ApplicationURL.Index, true);
+    }
+
+}

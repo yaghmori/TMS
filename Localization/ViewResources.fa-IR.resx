@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Add" xml:space="preserve">
+    <value>افزودن</value>
+  </data>
+  <data name="AddAndSaveChanges" xml:space="preserve">
+    <value>ثبت و ذخیره</value>
+  </data>
+  <data name="AddClient" xml:space="preserve">
+    <value>ایجاد کلاینت جدید</value>
+  </data>
+  <data name="AddNewRole" xml:space="preserve">
+    <value>افزودن نقش جدید</value>
+  </data>
+  <data name="AddNewUser" xml:space="preserve">
+    <value>افزودن کاربر جدید</value>
+  </data>
+  <data name="AddUser" xml:space="preserve">
+    <value>افزودن کاربر</value>
+  </data>
+  <data name="AlreadyHaveAnAccount" xml:space="preserve">
+    <value>از قبل حساب کاربری داردید ؟</value>
+  </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>تنظیمات برنامه</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>سیستم مانیتورنگ دما</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغییر کلمه عبور</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>تایید کلمه عبور</value>
+  </data>
+  <data name="CreateNewClient" xml:space="preserve">
+    <value>ایجاد کلاینت جدید</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>رمز عبور فعلی</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>پیشخوان</value>
+  </data>
+  <data name="ClientManagement" xml:space="preserve">
+    <value>مدیریت کلاینت</value>
+  </data>
+  <data name="Clients" xml:space="preserve">
+    <value>کلاینت ها</value>
+  </data>
+  <data name="ClientSelected" xml:space="preserve">
+    <value>{0} سیستم اطلاعاتی انتخاب شده است</value>
+  </data>
+  <data name="DeleteClient" xml:space="preserve">
+    <value>حذف کلاینت</value>
+  </data>
+  <data name="DeletePicture" xml:space="preserve">
+    <value>حذف تصویر</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>حذف نقش</value>
+  </data>
+  <data name="DeleteUser" xml:space="preserve">
+    <value>حذف کاربر</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>توضیحات</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ویرایش</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>ایمیل</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>نام</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>رمز عبور خود را فراموش کرده اید؟</value>
+  </data>
+  <data name="IHaveReadAndAgreedToTheTermsAndConditions" xml:space="preserve">
+    <value>من شرایط و ضوابط را مطالعه کرده و با آن موافقت کردم.</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>تصویر</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>نام خانوادگی</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>درحال بارگزاری ...</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="LoginToSystem" xml:space="preserve">
+    <value>ورود به سیستم</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>جدید</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>کلمه عبور جدید</value>
+  </data>
+  <data name="NotRegisteredYet" xml:space="preserve">
+    <value>هنوز ثبت نام نکرده اید ؟</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>تایید</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>کلمه عبور</value>
+  </data>
+  <data name="PasswordConfirmation" xml:space="preserve">
+    <value>تایید کلمه عبور</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>دسترسی ها</value>
+  </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>لطفا صبر کنید ...</value>
+  </data>
+  <data name="Processing" xml:space="preserve">
+    <value>در حال پردازش</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>پروفایل</value>
+  </data>
+  <data name="ProfileDetail" xml:space="preserve">
+    <value>جزئیات پروفایل</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>من را به خاطر بسپار</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>بازنشانی رمز عبور</value>
+  </data>
+  <data name="RoleSelected" xml:space="preserve">
+    <value>{0} نقش انتخاب شده است</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخیره</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>ذخیره تغییرات</value>
+  </data>
+  <data name="Security" xml:space="preserve">
+    <value>امنیت</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>انتخاب همه</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>تنظیمات</value>
+  </data>
+  <data name="ShowUsers" xml:space="preserve">
+    <value>مشاهده کاربران</value>
+  </data>
+  <data name="UpdateClient" xml:space="preserve">
+    <value>ویرایش سیستم اطلاعاتی</value>
+  </data>
+  <data name="UpdateRole" xml:space="preserve">
+    <value>ویرایش نقش</value>
+  </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>ویرایش کاربر</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>کاربر</value>
+  </data>
+  <data name="UserAccount" xml:space="preserve">
+    <value>حساب کاربری</value>
+  </data>
+  <data name="UserAccountDetail" xml:space="preserve">
+    <value>جزئیات حساب کاربری</value>
+  </data>
+  <data name="UserList" xml:space="preserve">
+    <value>لیست کاربران</value>
+  </data>
+  <data name="UserManagement" xml:space="preserve">
+    <value>مدیریت کاربران</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>نام کاربری</value>
+  </data>
+  <data name="UserPermissions" xml:space="preserve">
+    <value>مجوز های کاربر</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>نقش های کاربران</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>کاربران</value>
+  </data>
+  <data name="UserSelected" xml:space="preserve">
+    <value>{0} کاربر انتخاب شده است</value>
+  </data>
+  <data name="SelectDataSystem" xml:space="preserve">
+    <value>انتخاب سیستم اطلاعاتی</value>
+  </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>صفحه ای یافت نشد</value>
+  </data>
+  <data name="Authorizing" xml:space="preserve">
+    <value>درحال احراز هویت ...</value>
+  </data>
+  <data name="DataSystem" xml:space="preserve">
+    <value>سیستم اطلاعاتی</value>
+  </data>
+  <data name="DataSystems" xml:space="preserve">
+    <value>سیستم های اطلاعاتی</value>
+  </data>
+  <data name="SelectClient" xml:space="preserve">
+    <value>انتخاب کلاینت</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>پیکربندی</value>
+  </data>
+  <data name="AddCable" xml:space="preserve">
+    <value>افزودن کابل</value>
+  </data>
+  <data name="AddHumiditySensor" xml:space="preserve">
+    <value>افزودن سنسور رطوبت</value>
+  </data>
+  <data name="AddLoop" xml:space="preserve">
+    <value>افزودن حلقه</value>
+  </data>
+  <data name="AddSilo" xml:space="preserve">
+    <value>افزودن سیلو</value>
+  </data>
+  <data name="AddTempSensor" xml:space="preserve">
+    <value>افزودن سنسور</value>
+  </data>
+  <data name="Calibration" xml:space="preserve">
+    <value>کالیبراسیون</value>
+  </data>
+  <data name="DeleteAllSiloItems" xml:space="preserve">
+    <value>حذف تمام آیتم ها</value>
+  </data>
+  <data name="DeleteSiloItem" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="ExportData" xml:space="preserve">
+    <value>ذخیره اطلاعات سنسور ها</value>
+  </data>
+  <data name="ImportData" xml:space="preserve">
+    <value>بارگزاری اطلاعات سنسور ها</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>اطلاعات</value>
+  </data>
+  <data name="ProjectSettings" xml:space="preserve">
+    <value>تنظیمات پروژه</value>
+  </data>
+  <data name="Refresh" xml:space="preserve">
+    <value>بروزرسانی</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>گزارشات</value>
+  </data>
+  <data name="ResetFalseValueCounter" xml:space="preserve">
+    <value>بازنشانی شمارنده انحراف دما</value>
+  </data>
+  <data name="ResetHistories" xml:space="preserve">
+    <value>حذف تاریخچه</value>
+  </data>
+  <data name="DeleteAll" xml:space="preserve">
+    <value>حذف همه</value>
+  </data>
+  <data name="Count" xml:space="preserve">
+    <value>تعداد</value>
+  </data>
+  <data name="DeleteHistory" xml:space="preserve">
+    <value>حذف تاریخچه</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>بازنشانی</value>
+  </data>
+  <data name="ResetHistory" xml:space="preserve">
+    <value>حذف کامل تاریخچه</value>
+  </data>
+  <data name="Histories" xml:space="preserve">
+    <value>تاریخچه</value>
+  </data>
+  <data name="CableView" xml:space="preserve">
+    <value>نمایش کابل ها</value>
+  </data>
+  <data name="LoopView" xml:space="preserve">
+    <value>نمایش حلقه ها</value>
+  </data>
+  <data name="RealTimeView" xml:space="preserve">
+    <value>نمایش بلادرنگ</value>
+  </data>
+  <data name="TreeView" xml:space="preserve">
+    <value>نمایش درختی</value>
+  </data>
+  <data name="UserSessions" xml:space="preserve">
+    <value>نشست های کاربر</value>
+  </data>
+  <data name="KillSession" xml:space="preserve">
+    <value>حذف نشست</value>
+  </data>
+  <data name="Terminate" xml:space="preserve">
+    <value>از بین بردن</value>
+  </data>
+  <data name="ActiveSessions" xml:space="preserve">
+    <value>نشست های فعال</value>
+  </data>
+  <data name="UserLogins" xml:space="preserve">
+    <value>نشست های کاربر</value>
+  </data>
+</root>

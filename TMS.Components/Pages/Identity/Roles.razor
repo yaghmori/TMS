@@ -1,0 +1,87 @@
+﻿@page "/Roles"
+@page "/IdentityManagement/Roles"
+@attribute [Authorize(Policy = ApplicationPermissions.Roles.View)]
+@inherits BaseComponent
+
+
+
+<div Class="d-flex flex-row align-items-center  justify-content-between  mb-3">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@_viewLocalizer["Roles"]</MudText>
+    </MudHidden>
+
+    <div Class="d-flex flex-row align-items-center justify-content-sm-start justify-content-between gap-3">
+        <AuthorizeView Policy="@ApplicationPermissions.Roles.Search">
+                <MudTextField T="string"
+                              ValueChanged="@(s=>OnSearchData(s))"
+                              Placeholder="@_viewLocalizer["Search"]"
+                              Adornment="Adornment.Start"
+                              Margin="Margin.Dense"
+                              Immediate="false" Clearable="true"
+                              AdornmentIcon="@Icons.Material.Filled.Search"
+                              IconSize="Size.Medium"
+                              Class="mt-n3"></MudTextField>
+        </AuthorizeView>
+        <MudHidden Breakpoint="Breakpoint.Xs">
+            <AuthorizeView Policy="@ApplicationPermissions.Roles.Create">
+                    <MudButton StartIcon="@Icons.Rounded.AddCircle" Variant="Variant.Filled" OnClick="()=>AddOrUpdateRole(null)" Color="Color.Primary">@_viewLocalizer["AddNewRole"]</MudButton>
+            </AuthorizeView>
+        </MudHidden>
+    </div>
+</div>
+<!--Fab Button-->
+<MudHidden Breakpoint="Breakpoint.Xs" Invert=true>
+    <AuthorizeView Policy="@ApplicationPermissions.Roles.Create">
+            <div class="float">
+                <MudFab Class="my-float" Icon="@Icons.Filled.Add" OnClick="()=>AddOrUpdateRole(null)" Color="Color.Primary" />
+            </div>
+    </AuthorizeView>
+</MudHidden>
+
+<MudDataGrid T="RoleResponse"
+             Loading=IsBusy
+             Elevation="2"
+             ColumnResizeMode="ResizeMode.Column"
+             @ref="@_mudDataGrid"
+             ServerData="@(new Func<GridState<RoleResponse>, Task<GridData<RoleResponse>>>(ReloadDataAsync))"
+             ReadOnly="false"
+             EditTrigger="DataGridEditTrigger.Manual"
+             EditMode="DataGridEditMode.Form"
+             Hover="true" Dense="true" Striped="true"
+             FixedHeader="true">
+    <NoRecordsContent>
+        <div class="height:100px;">
+            <h6 class="text-secondary">@_messageLocalizer["NoRecordFound"]</h6>
+        </div>
+    </NoRecordsContent>
+
+
+    <Columns>
+        <Column T="RoleResponse" Field="Name" Title="@_contextLocalizer["Role.Name"]" />
+        <Column Context="rowData" T="RoleResponse" Sortable="false" Resizable="false">
+            <CellTemplate>
+                <MudButtonGroup Color="Color.Primary" Variant="Variant.Text" Class="d-flex justify-end">
+                    <AuthorizeView Policy="@ApplicationPermissions.Roles.AddOrRemoveClaims">
+                        <MudIconButton Color="@Color.Inherit" OnClick="()=>AddOrRemoveRoleClaims(rowData.Item)"><i class="far fa-shield-check"></i> <span>@rowData.Item.Claims.Count</span></MudIconButton>
+                    </AuthorizeView>
+
+                    <AuthorizeView Policy="@ApplicationPermissions.Roles.AddOrRemoveUsers">
+                        <MudIconButton Color="@Color.Inherit" OnClick="()=>AddOrRemoveUsers(rowData.Item)"><i class="far fa-user-group"></i> <span>@rowData.Item.UsersCount</span></MudIconButton>
+                    </AuthorizeView>
+                    <AuthorizeView Policy="@ApplicationPermissions.Roles.Edit">
+                        <MudIconButton Color="@Color.Inherit" OnClick="()=>AddOrUpdateRole(rowData.Item)"><i class="far fa-edit" /></MudIconButton>
+                    </AuthorizeView>
+                    <AuthorizeView Policy="@ApplicationPermissions.Roles.Delete">
+                        <MudIconButton Color="@Color.Error" OnClick="()=>DeleteRole(rowData.Item)"><i class="fas fa-trash-can" /></MudIconButton>
+                    </AuthorizeView>
+                </MudButtonGroup>
+            </CellTemplate>
+        </Column>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager T="RoleResponse" />
+    </PagerContent>
+
+</MudDataGrid>
+
+

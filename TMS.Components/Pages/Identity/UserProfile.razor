@@ -1,0 +1,167 @@
+﻿@page "/Profile"
+@inherits BaseComponent
+@attribute [Authorize(Policy = ApplicationPermissions.UserProfile.View)]
+
+
+
+
+<MudHidden Breakpoint="Breakpoint.Xs">
+    <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@_viewLocalizer["Profile"]</MudText>
+</MudHidden>
+
+<MudTabs Elevation="1" Rounded="true" PanelClass="mt-6">
+    <MudTabPanel Text="@_viewLocalizer["UserAccountDetail"]">
+        @if (!IsLoading)
+        {
+            <EditForm Model="@UserRequest" OnValidSubmit="SaveChangesSubmit">
+                <DataAnnotationsValidator />
+                <MudGrid Spacing="3">
+                    <MudItem Class="align-self-stretch" xs="12" sm="5" md="4" lg="3">
+                    <MudCard>
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText>@_viewLocalizer["ProfileDetail"]</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <div class="d-flex justify-center mb-4">
+                                <MudAvatar Image="@UserRequest.Image" Style="height:125px; width:125px;">
+                                    @if (UserRequest.Image == null)
+                                    {
+                                        <MudIcon Size="Size.Large"></MudIcon>
+                                    }
+                                </MudAvatar>
+
+                            </div>
+                            <MudText Align="Align.Center">@UserRequest.Email</MudText>
+                        </MudCardContent>
+                        <MudCardActions Class="d-flex justify-center">
+                            <MudButton Variant="Variant.Text" Color="Color.Secondary" Style="text-transform:none">@_viewLocalizer["DeletePicture"]</MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="7" md="8" lg="9">
+                    <MudCard>
+                        <MudCardHeader>
+                            <CardHeaderContent>
+                                <MudText>@_viewLocalizer["ProfileDetail"]</MudText>
+                            </CardHeaderContent>
+                        </MudCardHeader>
+                        <MudCardContent>
+                            <MudGrid>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="@UserRequest.FirstName" For="@(() => UserRequest.FirstName)" Label="@_viewLocalizer["FirstName"]" Variant="Variant.Outlined" Immediate="true" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="@UserRequest.LastName" For="@(() => UserRequest.LastName)" Label="@_viewLocalizer["LastName"]" Variant="Variant.Outlined" Immediate="true" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="@UserRequest.Description" For="@(() => UserRequest.Description)" Label="@_viewLocalizer["Description"]" Variant="Variant.Outlined" Immediate="true" />
+                                </MudItem>
+                                <MudItem xs="12" md="6">
+                                    <MudTextField @bind-Value="@UserRequest.Email" Disabled=true ReadOnly="true" For="@(() => UserRequest.Email)" Label="@_viewLocalizer["Email"]" Variant="Variant.Outlined" InputType="InputType.Email" Immediate="true" />
+                                </MudItem>
+                            </MudGrid>
+                        </MudCardContent>
+                        <MudCardActions Class="pb-4 pl-4">
+                            <MudButton disabled="@(!context.Validate() || !context.IsModified() || IsSaving)" ButtonType="ButtonType.Submit" FullWidth=true Size="Size.Large" Variant="Variant.Filled" Color="Color.Primary">
+                                @if (IsSaving)
+                                {
+                                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                    <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+                                }
+                                else
+                                {
+                                    @_viewLocalizer["SaveChanges"]
+                                }
+
+                            </MudButton>
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                </MudGrid>
+            </EditForm>
+        }
+        else
+        {
+            <Loading />
+        }
+    </MudTabPanel>
+    <MudTabPanel Text="@_viewLocalizer["Permisions"]">
+        <MudCard>
+            <MudCardHeader>
+                <CardHeaderContent>
+                    <MudText>@_viewLocalizer["Permisions"]</MudText>
+                </CardHeaderContent>
+            </MudCardHeader>
+            <MudCardContent>
+                <MudGrid>
+                    <MudItem xs="12" sm="4">
+                        <MudText>
+                            <b>Email</b>
+                        </MudText>
+                        <MudText Typo="Typo.body2">
+                            What type of system notifications you want to recieve to your email.
+                        </MudText>
+                        <div class="d-flex flex-column mt-6">
+                            <MudCheckBox Checked="false" Label="Threat Detection" Color="Color.Primary"></MudCheckBox>
+                            <MudCheckBox Checked="true" Label="Server Errors" Color="Color.Error"></MudCheckBox>
+                            <MudCheckBox Checked="false" Label="Server Warnings" Color="Color.Warning"></MudCheckBox>
+                            <MudCheckBox Checked="true" Label="Spam" Color="Color.Success"></MudCheckBox>
+                        </div>
+                    </MudItem>
+                </MudGrid>
+            </MudCardContent>
+        </MudCard>
+    </MudTabPanel>
+    <MudTabPanel Text="@_viewLocalizer["Security"]">
+        @if (!IsLoading)
+        {
+            <EditForm Model="@changePasswordRequest" OnValidSubmit="ChangePasswordSubmit">
+                <DataAnnotationsValidator />
+
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText>@_viewLocalizer["ChangePassword"]</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudGrid>
+                            <MudItem xs="12">
+                                <MudTextField T="string" @bind-Value="changePasswordRequest.CurrentPassword" For="@(()=>changePasswordRequest.CurrentPassword)" Label="@_viewLocalizer["CurrentPassword"]" Variant="Variant.Outlined" InputType="InputType.Password" Required="true" Immediate="true" />
+                            </MudItem>
+
+                            <MudItem xs="12" md="4">
+                                <MudTextField T="string" @bind-Value="changePasswordRequest.NewPassword" For="@(()=>changePasswordRequest.NewPassword)" Label="@_viewLocalizer["NewPassword"]" Variant="Variant.Outlined" InputType="InputType.Password" Required="true" Immediate="true" />
+                            </MudItem>
+                            <MudItem xs="12" md="4">
+                                <MudTextField T="string" @bind-Value="changePasswordRequest.ConfirmationPassword" For="@(()=>changePasswordRequest.ConfirmationPassword)" Label="@_viewLocalizer["PasswordConfirmation"]" Variant="Variant.Outlined" InputType="InputType.Password" Required="true" Immediate="true" />
+                            </MudItem>
+                        </MudGrid>
+                        <div>
+                            <br />
+                            <MudButton disabled="@(!context.Validate() || !context.IsModified() || IsSaving)" ButtonType="ButtonType.Submit" FullWidth=true Size="Size.Large" Variant="Variant.Filled" Color="Color.Primary">
+                                @if (IsSaving)
+                                {
+                                    <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                                    <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+                                }
+                                else
+                                {
+                                    @_viewLocalizer["ChangePassword"]
+                                }
+                            </MudButton>
+
+                        </div>
+
+                    </MudCardContent>
+                </MudCard>
+            </EditForm>
+        }
+        else
+        {
+            <Loading />
+        }
+    </MudTabPanel>
+</MudTabs>

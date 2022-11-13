@@ -1,0 +1,43 @@
+           <MudTable Items="@PermissionCollection"
+                      MultiSelection="true"
+                      Elevation="0"
+                      Bordered=false
+                      @bind-SelectedItems="SelectedPermission"
+                      Filter="new Func<UserClaimRequest,bool>(FilterFunc)"
+                      FixedHeader=true
+                      Height="370px"
+                      Dense=true
+                      Striped=true
+                      Hover=true>
+                <ToolBarContent>
+                    <MudTextField @bind-Value="Query" Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </ToolBarContent>
+
+                <HeaderContent>
+                    <MudTh>@_viewLocalizer["SelectAll"]</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="ClaimValue">@context.ClaimValue</MudTd>
+                </RowTemplate>
+            </MudTable>
+
+
+
+                        <MudDataGrid T="string"
+                         MultiSelection="true"
+                         Items="@PermissionCollection"
+                         @bind-SelectedItems=SelectedPermission
+                         QuickFilter="new Func<string,bool>(FilterFunc)" FixedHeader=true
+                         Height="370px"
+                         Dense=true
+                         Striped=true
+                         Elevation="0" ReadOnly=true
+                         Hover=true>
+                <ToolBarContent>
+                    <MudTextField @bind-Value="Query" Immediate=true Placeholder="Search" Adornment="Adornment.Start" AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                </ToolBarContent>
+                <Columns>
+                    <SelectColumn T="string" />
+                    <Column T="string" Field="ClaimValue" />
+                </Columns>
+            </MudDataGrid>

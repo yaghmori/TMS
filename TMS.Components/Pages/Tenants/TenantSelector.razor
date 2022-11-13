@@ -1,0 +1,35 @@
+﻿@inherits BaseComponent
+
+<MudSelect T="string"
+           Dense=true
+           FullWidth=true
+           Margin="Margin.Dense"
+           @bind-Value="@SelectedClientId"
+           Label="@_viewLocalizer["SelectClient"]"
+           AnchorOrigin="Origin.BottomCenter"
+           Variant="Variant.Outlined">
+    @foreach (var item in ClientCollection)
+    {
+        <MudSelectItem Value="@item.Id" Disabled="@(!item.Accessable)" OnClick="()=>OnSelectionChanged(item.Id)" Avatar="@Icons.Outlined.Hub">
+
+            <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center" style="min-height:50px;">
+                    <div>
+                        <MudText Color="Color.Info" Typo="Typo.inherit">@item.Name</MudText>
+                        @if (!string.IsNullOrWhiteSpace(item.Description))
+                        {
+                            <MudText Typo="Typo.body2">@item.Description</MudText>
+                        }
+                    </div>
+
+
+                </div>
+                <i class="fas fa-angle-right"></i>
+                <MudIcon Size="Size.Large" Icon="@Icons.Rounded.ArrowRight" />
+
+            </div>
+        </MudSelectItem>
+    }
+</MudSelect>
+
+

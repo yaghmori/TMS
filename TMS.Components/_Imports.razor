@@ -1,0 +1,63 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using System.Security.Claims
+@using System.Globalization
+@using System.Text.RegularExpressions
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.JsonPatch
+@using Microsoft.AspNetCore.Components;
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Routing
+@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Web.Virtualization
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.Extensions.Localization
+@using AutoMapper
+@using MudBlazor
+@using MudBlazor.ThemeManager
+@using TMS.Core.Application.DataServices
+@using TMS.Infrastructure.Localization
+@using TMS.Shared
+@using TMS.Core.Domain.Enums
+@using TMS.Shared.Requests
+@using TMS.Shared.Responses
+@using TMS.Shared.Services
+@using TMS.Shared.DataServices
+@using TMS.RootComponents.Shared
+@using TMS.RootComponents.Shared.Layout
+@using TMS.RootComponents.Shared.Components
+@using TMS.RootComponents.Shared.Themes
+@using TMS.RootComponents.Pages
+@using TMS.RootComponents.Helpers
+@using System.Collections.ObjectModel
+@using TMS.Shared.Models
+@using TMS.Shared.Constants
+
+@inject IAuthorizationService _authorizationService
+@inject NavigationManager _navigationManager
+@inject AuthenticationStateProvider _authStateProvider
+
+@inject AppStateHandler _appState
+@inject IMapper _autoMapper
+@inject MudBlazor.ISnackbar _snackbar
+@inject MudBlazor.IDialogService _dialog
+
+@inject IStringLocalizer<MessageResources> _messageLocalizer
+@inject IStringLocalizer<ViewResources> _viewLocalizer
+@inject IStringLocalizer<ContextResources> _contextLocalizer
+@inject Blazored.LocalStorage.ILocalStorageService _localStorage
+@inject Blazored.SessionStorage.ISessionStorageService _sessionStorage
+
+@inject IJSRuntime _jsRuntime
+
+
+@inject ICultureDataService _cultureDataService;
+@inject ISiloItemDataService _siloItemDataService;
+@inject IUserDataService _userDataService
+@inject ITenantDataService _TenantDataService
+@inject IRoleDataService _roleDataService
+@inject IAuthDataService _authDataService
+@inject IAppSettingDataService _appSettingDataService
+@inject IUserSettingDataService _userSettingDataService

@@ -1,0 +1,19 @@
+                <MudStack Row=true Justify="Justify.FlexEnd" Class="mt-4 mb-2" Spacing="2">
+                    <MudButton>@_viewLocalizer["Cancel"]</MudButton>
+                    <MudButton Disabled="@(!context.Validate() || !context.IsModified() || IsBusy)"
+                               ButtonType="ButtonType.Submit"
+                               Class="w-85"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary">
+                        @if (IsBusy)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+                        }
+                        else
+                        {
+                            @_viewLocalizer["AddAndSaveChanges"]
+
+                        }
+                    </MudButton>
+                </MudStack>

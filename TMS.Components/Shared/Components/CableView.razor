@@ -1,0 +1,43 @@
+﻿@inherits BaseComponent
+@if (Silo != null)
+{
+    if (!IsLoading)
+    {
+        <div class="d-flex align-self-center flex-wrap gap-3">
+            @foreach (var loop in Silo.SiloItems.Where(x => x.ItemType == SiloItemTypeEnum.Loop))
+            {
+                <div Class="d-flex flex-column align-self-start align-items-center gap-3 mud-elevation-2 rounded white">
+                    <div class="mt-2">@loop.DisplayMember</div>
+                    <div class="d-flex flex-row justify-content-between gap-2 mx-7">
+                        @foreach (var cable in loop.SiloItems.Where(x => x.ItemType == SiloItemTypeEnum.Cable))
+                        {
+                            <div Class="d-flex flex-column align-items-center gap-3">
+                                <MudTimeline Class="mx-n4">
+                                    @foreach (var sensor in cable.SiloItems.Where(x => x.ItemType == SiloItemTypeEnum.TempSensor))
+                                    {
+                                        <MudTimelineItem Class="my-n1" Variant="Variant.Filled" Color="Color.Success">
+                                            <ItemDot>
+                                                <MudTooltip Text="@sensor.DisplayMember" Arrow="true" Placement="Placement.Top">
+                                                    <MudIconButton Class="m-n3" ><small class="text-white">25</small></MudIconButton>
+                                                </MudTooltip>
+                                            </ItemDot>
+                                        </MudTimelineItem>
+                                    }
+                                </MudTimeline>
+                                <div class="mb-2">
+                                    <MudTooltip Text="@cable.DisplayMember" Arrow="true" Placement="Placement.Top">
+                                        @cable.Index
+                                    </MudTooltip>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-0" />
+    }
+}

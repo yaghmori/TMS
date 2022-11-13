@@ -1,0 +1,83 @@
+﻿@inherits BaseComponent
+@page "/Tenants/{TenantId}"
+
+@if (!IsLoading)
+{
+    <AuthorizeView Policy="@ApplicationPolicy.TenantMember" Resource=@Tenant>
+        <Authorized>
+            <MudHidden Breakpoint="Breakpoint.Xs">
+                <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@Tenant.Name</MudText>
+            </MudHidden>
+            <MudGrid Spacing="3">
+                <MudItem xs="12" sm="12" md="12">
+                    <MudPaper Elevation="2" Class="d-flex flex">
+                        <MudToolBar Dense=true>
+                            <AuthorizeView Context="authContext" Policy="@ApplicationPermissions.Tenants.Configuration">
+                                <MudMenu Class="ml-n4" Color="Color.Primary" Dense=true Size="Size.Medium" Icon="@Icons.Rounded.Menu">
+                                    <MudMenuItem OnClick="()=>_treeViewComponent.AddSiloItem(null,SiloItemTypeEnum.Silo)"><i class="far fa-circle-plus text-success"></i><span class="ml-2">@_viewLocalizer["AddSilo"]</span></MudMenuItem>
+                                    <MudMenuItem OnClick="()=>_treeViewComponent.DeleteAllSiloItem()"><i class="far fa-trash-can-list text-danger"></i><span class="ml-2">@_viewLocalizer["DeleteAllSiloItems"]</span></MudMenuItem>
+                                    <MudDivider Class="mb-1" />
+                                    <MudMenuItem OnClick="()=>_treeViewComponent.ImportSensorData()"><i class="far fa-file-export text-warning"></i><span class="ml-2">@_viewLocalizer["ImportData"]</span></MudMenuItem>
+                                    <MudMenuItem OnClick="()=>_treeViewComponent.ExportSensorData()"><i class="far fa-file-import text-primary"></i><span class="ml-2">@_viewLocalizer["ExportData"]</span></MudMenuItem>
+                                </MudMenu>
+                            </AuthorizeView>
+                            <MudButton StartIcon="fad fa-rotate" OnClick="()=>_treeViewComponent.ReloadData()" Color="Color.Primary"><i class=""></i><span class="text-secondary">@_viewLocalizer["Refresh"]</span></MudButton>
+                            <MudButton StartIcon="fad fa-gear" Color="Color.Primary"><i class=""></i><span class="text-secondary">@_viewLocalizer["ProjectSettings"]</span></MudButton>
+                            <AuthorizeView Context="authContext" Policy="@ApplicationPermissions.Tenants.Configuration">
+                                <MudButton StartIcon="fad fa-screwdriver-wrench" Color="Color.Primary"><i class=""></i><span class="text-secondary">@_viewLocalizer["Diagnostic"]</span></MudButton>
+                            </AuthorizeView>
+                        </MudToolBar>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4" lg="4" xl="3">
+                    <MudPaper Elevation="2" Height="600px" MinWidth="250px" MaxHeight="600px" Class="overflow-y-auto">
+                        <div class="d-flex flex-column pa-2" style="width:100%; height:100%;">
+                            <TreeView @ref="_treeViewComponent" SelectedSiloItem="SelectedSiloItem" SelectedItemChanged="@SelectedSiloItemChanged" />
+                        </div>
+                    </MudPaper>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="8" lg="8" xl="9">
+                    <MudGrid Spacing="3">
+                        <MudItem xs="12" sm="12" md="12" lg="12">
+                            <MudTabs Elevation="2" Rounded="true" PanelClass="mt-6">
+                                <MudTabPanel Text="@_viewLocalizer["RealTimeView"]">
+                                    <MudPaper Class="pa-5">
+                                        <MudChart ChartType="ChartType.Line" ChartSeries="@Series1" @bind-SelectedIndex="Index1" XAxisLabels="@XAxisLabels1" Width="100%" Height="350px"></MudChart>
+                                    </MudPaper>
+                                </MudTabPanel>
+                                <MudTabPanel Text="@_viewLocalizer["CableView"]">
+                                    <CableView SiloItemId="@SelectedSiloItem.Id" />
+                                </MudTabPanel>
+                                <MudTabPanel Text="@_viewLocalizer["LoopView"]">
+
+                                </MudTabPanel>
+                                <MudTabPanel Text="@_viewLocalizer["Histories"]">
+                                    <SensorHistoryView SiloItemId="@SelectedSiloItem.Id" />
+
+                                </MudTabPanel>
+                            </MudTabs>
+                        </MudItem>
+                        <MudItem xs="12" sm="12" md="12" lg="12">
+                        </MudItem>
+                    </MudGrid>
+                </MudItem>
+            </MudGrid>
+
+        </Authorized>
+        <Authorizing>
+            <p class="mt-n2">@_viewLocalizer["Authorizing"]</p>
+            <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-n5 mb-3" />
+        </Authorizing>
+
+        <NotAuthorized>
+            <h4 class="text-danger">@_viewLocalizer["AccessDenied"]</h4>
+            <p>@_messageLocalizer["YouAreNotAuthorizedToAccessThisResource"]</p>
+        </NotAuthorized>
+    </AuthorizeView>
+}
+else
+{
+    <p class="mt-n2">@_viewLocalizer["Authorizing"]</p>
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-n5 mb-3" />
+
+}

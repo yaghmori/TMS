@@ -1,0 +1,40 @@
+﻿@inherits BaseComponent
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@NewUser" OnValidSubmit="SaveChangesSubmit">
+            <DataAnnotationsValidator />
+            <div class="d-flex flex-column gap-2">
+
+                <MudTextField @bind-Value="@NewUser.Email" For="() => NewUser.Email" Label="@_contextLocalizer["User.Email"]" Variant="Variant.Outlined" Immediate="true" />
+                <div class="d-flex flex-row gap-2">
+                    <MudTextField @bind-Value="@NewUser.FirstName" For="() => NewUser.FirstName" Label="@_contextLocalizer["User.FirstName"]" Variant="Variant.Outlined" Immediate="true" />
+                    <MudTextField @bind-Value="@NewUser.LastName" For="() => NewUser.LastName" Label="@_contextLocalizer["User.LastName"]" Variant="Variant.Outlined" Immediate="true" />
+                </div>
+                <MudTextField @bind-Value="@NewUser.Password" For="() => NewUser.Password" Label="@_contextLocalizer["User.Password"]" Variant="Variant.Outlined" Immediate="true" />
+                <MudTextField @bind-Value="@NewUser.PasswordConfirmation" For="() => NewUser.PasswordConfirmation" Label="@_contextLocalizer["User.PasswordConfirmation"]" Variant="Variant.Outlined" Immediate="true" />
+
+            </div>
+            <div class="d-flex flex-row justify-content-end mt-4 mb-2 gap-2">
+                <MudButton OnClick="Cancel">@_viewLocalizer["Cancel"]</MudButton>
+                <MudButton Disabled="@(!context.Validate() ||  !context.IsModified() || IsBusy)"
+                           ButtonType="ButtonType.Submit"
+                           Class="w-85"
+                           Variant="Variant.Filled"
+                           Color="Color.Primary">
+                    @if (IsBusy)
+                    {
+                        <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                        <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+                    }
+                    else
+                    {
+                        @_viewLocalizer["SaveChanges"].Value
+                    }
+                </MudButton>
+            </div>
+        </EditForm>
+
+    </DialogContent>
+</MudDialog>
+
+

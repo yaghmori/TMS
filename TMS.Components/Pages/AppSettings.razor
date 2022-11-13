@@ -1,0 +1,17 @@
+﻿@page "/AppSettings"
+@inherits BaseComponent
+@attribute [Authorize(Policy = ApplicationPermissions.AppSetting.View)]
+
+
+<MudHidden Breakpoint="Breakpoint.Xs">
+    <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@_viewLocalizer["AppSettings"]</MudText>
+</MudHidden>
+
+
+<MudTextField @bind-Value="@JwtSetting.Issuer" Label="@_contextLocalizer["Issuer"]" Variant="Variant.Outlined" Immediate="true" />
+<MudTextField @bind-Value="@JwtSetting.Audience" Label="@_contextLocalizer["Issuer"]" Variant="Variant.Outlined" Immediate="true" />
+<MudTextField @bind-Value="@JwtSetting.SecurityKey" Label="@_contextLocalizer["Issuer"]" Variant="Variant.Outlined" Immediate="true" />
+<MudTextField @bind-Value="@JwtSetting.RefreshTokenExpiryInDay" Label="@_contextLocalizer["Issuer"]" Variant="Variant.Outlined" Immediate="true" />
+<MudTextField @bind-Value="@JwtSetting.TokenExpiryInMinutes" Label="@_contextLocalizer["Issuer"]" Variant="Variant.Outlined" Immediate="true" />
+
+

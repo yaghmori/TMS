@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TMS.API.Host</name>
+    </assembly>
+    <members>
+        <member name="M:TMS.API.Controllers.RoleController.AddRole(System.String)">
+            <summary>
+            Add Role by Name
+            </summary>
+            <param name="roleName"></param>
+            <returns>RoleId as string</returns>
+        </member>
+        <member name="M:TMS.API.Controllers.RoleController.DeleteRoleByName(System.String)">
+            <summary>
+            Delete Role by Name
+            </summary>
+            <param name="roleName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TMS.API.Controllers.RoleController.DeleteRoleById(System.String)">
+            <summary>
+            Dlete Role by Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>OK</returns>
+        </member>
+        <member name="M:TMS.API.Controllers.RoleController.UpdateRoleById(System.String,System.String)">
+            <summary>
+            Update Role by Id 
+            </summary>
+            <param name="roleId"></param>
+            <param name="roleName"></param>
+            <returns>OK</returns>
+        </member>
+        <member name="M:TMS.API.Controllers.RoleController.GetRoleById(System.String)">
+            <summary>
+            Get Role by Id
+            </summary>
+            <param name="roleId"></param>
+            <returns>RoleResponse</returns>
+        </member>
+        <member name="M:TMS.API.Controllers.RoleController.GetRoleByName(System.String)">
+            <summary>
+            Get Role by Name
+            </summary>
+            <param name="roleName"></param>
+            <returns>RoleResponse</returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:TMS.API.Controllers.RoleController.GetUsersByRoleName(System.String)" -->
+        <!-- Badly formed XML comment ignored for member "M:TMS.API.Controllers.RoleController.GetUsersByRoleId(System.String)" -->
+        <member name="M:TMS.API.Controllers.RoleController.ReplaceRoleUsers(System.String,System.Collections.Generic.List{System.String})">
+            <summary>
+            Replace users of role by given RoleId
+            </summary>
+            <param name="roleId"></param>
+            <param name="request"></param>
+            <returns>OK</returns>
+        </member>
+    </members>
+</doc>

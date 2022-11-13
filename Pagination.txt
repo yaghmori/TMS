@@ -1,0 +1,11 @@
+        <div class="d-flex align-items-center justify-content-between">
+            <MudPagination ShowPreviousButton="false"
+                           ShowNextButton="false"
+                           Rectangular="true"
+                           BoundaryCount="3"
+                           SelectedChanged="OnPageChanged"
+                           Count="UserPagedCollection.TotalPages" />
+            <div class="d-flex justify-content-end">
+            </div>
+
+        </div>

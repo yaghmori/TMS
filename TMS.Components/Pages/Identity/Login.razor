@@ -1,0 +1,31 @@
+﻿@page "/login"
+@layout AuthLayout
+@attribute [AllowAnonymous]
+
+
+<EditForm Model="@Request" OnValidSubmit="OnSubmitAsync">
+    <DataAnnotationsValidator />
+
+    <MudText Typo="Typo.h4" GutterBottom="true">@_viewLocalizer["Login"]</MudText>
+    <MudText>@_viewLocalizer["NotRegisteredYet"] <MudLink Href="@ApplicationURL.Register">@_viewLocalizer["Register"]</MudLink></MudText>
+    <MudTextField @bind-Value="Request.Email" For="@(() => Request.Email)" Placeholder="@_viewLocalizer["Email"]" Variant="Variant.Outlined" Class="my-3" Immediate=true></MudTextField>
+    <MudTextField @bind-Value="@Request.Password" For="@(() => Request.Password)" Placeholder="@_viewLocalizer["Password"]" Variant="Variant.Outlined" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" Immediate=true />
+    <MudCheckBox T="bool" @bind-Checked="@Request.IsPersistent" Label="@_viewLocalizer["RememberMe"]" Color="Color.Primary" Class="ml-n3 my-2"></MudCheckBox>
+    <MudButton ButtonType="ButtonType.Submit" Disabled="@(!context.Validate() || !context.IsModified() || IsBusy)" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Large" FullWidth="true">
+        @if (IsBusy)
+        {
+            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+            <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+        }
+        else
+        {
+            @_viewLocalizer["SignIn"]
+        }
+    </MudButton>
+    <div>
+        <br />
+        <MudLink Href="@ApplicationURL.ForgotPassword">@_viewLocalizer["ForgotYourPassword"]</MudLink>
+    </div>
+
+</EditForm>
+

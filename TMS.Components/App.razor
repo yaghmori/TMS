@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+<CascadingAuthenticationState>
+
+<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+            <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <NotAuthorized>
+                @if (context?.User?.Identity?.IsAuthenticated == true)
+                {
+                    <h4 class="text-danger">@_viewLocalizer["AccessDenied"]</h4>
+                    <p>@_messageLocalizer["YouAreNotAuthorizedToAccessThisResource"]</p>
+                }
+                else
+                {
+                    var returnUrl = _navigationManager.ToBaseRelativePath(_navigationManager.Uri);
+                    <RedirectToLogin ReturnUrl="@returnUrl" />
+                }
+            </NotAuthorized>
+            <Authorizing>
+                <p class="mt-n2">@_viewLocalizer["Authorizing"]</p>
+                    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="mt-n5 mb-3" />
+            </Authorizing>
+        </AuthorizeRouteView>
+
+    </Found>
+    
+    <NotFound>
+            <PageTitle>Not found</PageTitle>
+            <LayoutView Layout="@typeof(NotFoundLayout)">
+                <p></p>
+            </LayoutView>
+
+    </NotFound>
+</Router>
+</CascadingAuthenticationState>
+

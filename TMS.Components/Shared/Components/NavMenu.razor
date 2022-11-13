@@ -1,0 +1,33 @@
+﻿@inherits BaseComponent
+
+
+<MudNavMenu Bordered="true" Rounded="true" Color="Color.Primary" Class="pa-2">
+
+    <AuthorizeView Policy="@ApplicationPermissions.Dashboard.View">
+        <MudNavLink Href="@ApplicationURL.Dashboard" Match="NavLinkMatch.All" Icon="fad fa-grid-horizontal">@_viewLocalizer["Dashboard"]</MudNavLink>
+    </AuthorizeView>
+    <AuthorizeView Policy="@ApplicationPermissions.Communication.Chat">
+        <MudNavLink Href="@ApplicationURL.Chat" Icon="fad fa-messages">@_viewLocalizer["Chat"]</MudNavLink>
+    </AuthorizeView>
+
+    <AuthorizeView Policy="@ApplicationPermissions.Tenants.View">
+        <MudNavLink Href="@ApplicationURL.Tenants" Icon="fad fa-coins">@_viewLocalizer["Clients"]</MudNavLink>
+    </AuthorizeView>
+
+        <MudText Typo="Typo.subtitle2" Color="Color.Inherit" Class="ml-4 my-3">@_viewLocalizer["IdentityManagement"]</MudText>
+        <AuthorizeView  Policy="@ApplicationPermissions.User.View">
+            <MudNavLink Href="@ApplicationURL.Users" Icon="fad fa-user-group">@_viewLocalizer["Users"]</MudNavLink>
+        </AuthorizeView>
+        <AuthorizeView Policy="@ApplicationPermissions.Roles.View">
+            <MudNavLink Href="@ApplicationURL.Roles" Icon="fad fa-user-group">@_viewLocalizer["Roles"]</MudNavLink>
+        </AuthorizeView>
+
+
+    <AuthorizeView Policy="@ApplicationPermissions.AppSetting.View">
+        <MudNavLink Href="@ApplicationURL.AppSettings" Icon="fad fa-gears">@_viewLocalizer["AppSettings"]</MudNavLink>
+    </AuthorizeView>
+    <MudNavLink Href="@ApplicationURL.Logout" Icon="fad fa-right-from-bracket">@_viewLocalizer["Logout"]</MudNavLink>
+
+</MudNavMenu>
+
+

@@ -1,0 +1,88 @@
+﻿@page "/Tenants"
+@inherits BaseComponent
+@attribute [Authorize(Policy = ApplicationPermissions.Tenants.View)]
+
+<div Class="d-flex flex-row align-items-center justify-content-between mb-3">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudText Typo="Typo.h5" Color="Color.Primary" Class="mb-4">@_viewLocalizer["Clients"]</MudText>
+    </MudHidden>
+    <div Class="d-flex flex-row align-items-center justify-content-between gap-3">
+        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Search">
+            <MudTextField T="string"
+                          ValueChanged="@(s=>OnSearchData(s))"
+                          Placeholder="@_viewLocalizer["Search"]"
+                          Adornment="Adornment.Start"
+                          Margin="Margin.Dense"
+                          Class="mt-n3"
+                          Immediate="false" Clearable="true"
+                          AdornmentIcon="@Icons.Material.Filled.Search"
+                          IconSize="Size.Medium"></MudTextField>
+        </AuthorizeView>
+
+        <MudHidden Breakpoint="Breakpoint.Xs">
+            <AuthorizeView Policy="@ApplicationPermissions.Tenants.Create">
+                <MudButton StartIcon="@Icons.Rounded.AddCircle" Variant="Variant.Filled" OnClick="()=>AddOrUpdateTenant(null)" Color="Color.Primary">@_viewLocalizer["AddClient"]</MudButton>
+            </AuthorizeView>
+        </MudHidden>
+
+    </div>
+</div>
+
+<!--Fab Button-->
+<MudHidden Breakpoint="Breakpoint.Xs" Invert=true>
+    <AuthorizeView Policy="@ApplicationPermissions.Tenants.Create">
+        <div class="float">
+            <MudFab Class="my-float" Icon="@Icons.Filled.Add" OnClick="()=>AddOrUpdateTenant(null)" Color="Color.Primary" />
+        </div>
+    </AuthorizeView>
+</MudHidden>
+
+<MudHidden Breakpoint="Breakpoint.Xs" Invert=true>
+    <ClientList />
+</MudHidden>
+<MudHidden Breakpoint="Breakpoint.Xs">
+
+    <MudDataGrid T="TenantResponse"
+                 Loading=IsBusy
+                 Elevation="2"
+                 ColumnResizeMode="ResizeMode.Column"
+                 @ref="@_mudDataGrid"
+                 ServerData="@(new Func<GridState<TenantResponse>, Task<GridData<TenantResponse>>>(ReloadDataAsync))"
+                 ReadOnly="false"
+                 EditTrigger="DataGridEditTrigger.Manual"
+                 EditMode="DataGridEditMode.Form"
+                 Hover="true" Dense="true" Striped="true"
+                 FixedHeader="true">
+        <NoRecordsContent>
+            <div class="height:100px;">
+                <h6 class="text-secondary">@_messageLocalizer["NoRecordFound"]</h6>
+            </div>
+        </NoRecordsContent>
+        <Columns>
+            <Column T="TenantResponse" Field="Name" Title="@_contextLocalizer["Client.Name"]" />
+            <Column T="TenantResponse" Field="ExpireDate" Title="@_contextLocalizer["Client.ExpireDate"]" />
+            <Column Resizable="false" Context="rowData" T="TenantResponse" Sortable="false">
+                <CellTemplate>
+                    <MudButtonGroup Color="Color.Primary" Variant="Variant.Text" Class="d-flex justify-end">
+                            <MudIconButton Color="@Color.Inherit" OnClick="()=>OpenTenantConfiguration(rowData.Item)"><i class="fas fa-sliders"></i><span></span></MudIconButton>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.AddOrRemoveUsers">
+                            <MudIconButton Color="@Color.Inherit" OnClick="()=>AddRemoveUsers(rowData.Item)"><i class="far fa-user-group"></i> <span>@rowData.Item.UsersCount</span></MudIconButton>
+                        </AuthorizeView>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Edit">
+                            <MudIconButton Color="@Color.Inherit" OnClick="()=>AddOrUpdateTenant(rowData.Item)"><i class="far fa-edit" /></MudIconButton>
+                        </AuthorizeView>
+                        <AuthorizeView Policy="@ApplicationPermissions.Tenants.Delete">
+                            <MudIconButton Color="@Color.Error" OnClick="()=>DeleteTenant(rowData.Item)"><i class="fas fa-trash-can" /></MudIconButton>
+                        </AuthorizeView>
+                    </MudButtonGroup>
+                </CellTemplate>
+            </Column>
+        </Columns>
+        <PagerContent>
+            <MudDataGridPager T="TenantResponse" />
+        </PagerContent>
+
+    </MudDataGrid>
+</MudHidden>
+
+

@@ -1,0 +1,70 @@
+﻿@inherits BaseComponent
+@if (!IsLoading)
+{
+    <MudTreeView Color="Color.Primary"
+             Items="SiloItems.ToHashSet()"
+             ExpandOnClick=true
+             Dense=true
+             Hover=true>
+        <ItemTemplate>
+            <MudTreeViewItem Expanded=context.IsExpanded ExpandedChanged="()=>OnExpanding(context)" Items="@context.SiloItems.ToHashSet()">
+                <Content>
+                    <div class="d-flex flex-row justify-content-between align-items-center " style="width:100%">
+                        <div class="d-flex flex-row  align-items-center align-items-center ml-n3">
+                            <MudTreeViewItemToggleButton Expanded=context.IsExpanded ExpandedChanged="()=>OnExpanding(context)" Visible="@context.HasChild" />
+
+                            <MudMenu Class="ml-n3" Icon="@Icons.Material.Filled.MoreVert" Dense=true IconColor="Color.Primary">
+                                <MudMenuItem OnClick="()=>OpenSiloItemInfo(context)"><i class="far fa-circle-info text-primary"></i><span class="ml-2">@_viewLocalizer["Info"]</span></MudMenuItem>
+                                <AuthorizeView Context="authContext" Policy="@ApplicationPermissions.Tenants.Configuration">
+                                    @if (context.ItemType == SiloItemTypeEnum.Silo)
+                                    {
+                                        <MudDivider Class="mb-1" />
+                                        @if (!context.FeaturedSensors.Where(x => x.Feature == SensorFeatureEnum.AmbientHumidity).Any())
+                                        {
+                                            <MudMenuItem OnClick="()=>AddSiloItem(context,SiloItemTypeEnum.HumiditySensor)"><i class="far fa-circle-plus text-success"></i><span class="ml-2">@_viewLocalizer["AddHumiditySensor"]</span></MudMenuItem>
+                                        }
+                                        <MudMenuItem OnClick="()=>AddSiloItem(context,SiloItemTypeEnum.Loop)"><i class="far fa-circle-plus text-success"></i><span class="ml-2">@_viewLocalizer["AddLoop"]</span></MudMenuItem>
+                                    }
+                                    @if (context.ItemType == SiloItemTypeEnum.Loop)
+                                    {
+                                        <MudDivider Class="mb-1" />
+                                        <MudMenuItem OnClick="()=>AddSiloItem(context,SiloItemTypeEnum.Cable)"><i class="far fa-circle-plus text-success"></i><span class="ml-2">@_viewLocalizer["AddCable"]</span></MudMenuItem>
+                                    }
+                                    @if (context.ItemType == SiloItemTypeEnum.Cable)
+                                    {
+                                        <MudDivider Class="mb-1" />
+                                        <MudMenuItem OnClick="()=>AddSiloItem(context,SiloItemTypeEnum.TempSensor)"><i class="far fa-circle-plus text-success"></i><span class="ml-2">@_viewLocalizer["AddTempSensor"]</span></MudMenuItem>
+                                        <MudMenuItem OnClick="()=>Calibration(context)"><i class="far fa-square-slider text-warning"></i><span class="ml-2">@_viewLocalizer["Calibration"]</span></MudMenuItem>
+                                    }
+                                    <MudDivider Class="mb-1" />
+                                    <MudMenuItem OnClick="()=>DeleteSiloItem(context)"><i class="far fa-trash-can text-danger"></i><span class="ml-2">@_viewLocalizer["DeleteSiloItem"]</span></MudMenuItem>
+                                    <MudMenuItem OnClick="()=>ResetHistories(context)"><i class="far fa-eraser text-danger"></i><span class="ml-2">@_viewLocalizer["ResetHistories"]</span></MudMenuItem>
+                                    <MudMenuItem OnClick="()=>ResetFalseValueCounter(context)"><i class="far fa-rotate-right text-primary"></i><span class="ml-2">@_viewLocalizer["ResetFalseValueCounter"]</span></MudMenuItem>
+                                </AuthorizeView>
+                                <MudDivider Class="mb-1" />
+                                <MudMenuItem>  <i class="far fa-chart-line text-secondary"></i><span class="ml-2">@_viewLocalizer["RealTime"]</span></MudMenuItem>
+                                <MudMenuItem OnClick="()=>SelectedItemChanged.InvokeAsync(context)"><i class="far fa-sliders-up text-secondary"></i><span class="ml-2">@_viewLocalizer["CableView"]</span></MudMenuItem>
+                                <MudMenuItem> <i class="far fa-solar-system text-secondary"></i><span class="ml-2">@_viewLocalizer["LoopView"]</span></MudMenuItem>
+                                <MudMenuItem> <i class="far fa-calendar-lines text-secondary"></i><span class="ml-2">@_viewLocalizer["Histories"]</span></MudMenuItem>
+
+
+                            </MudMenu>
+                            <span><i Class="@context.Icon fa mr-1" />@context.DisplayMember</span>
+                        </div>
+                        @if (context.ItemType == SiloItemTypeEnum.TempSensor || context.ItemType == SiloItemTypeEnum.HumiditySensor)
+                        {
+                            <MudIconButton Variant="Variant.Filled" DisableElevation=true Style="min-width:20px;" Color="Color.Success"><small class="text-white">25</small></MudIconButton>
+                            @*<MudChip Size="Size.Small" Color="Color.Success">25</MudChip>*@
+                        }
+                    </div>
+                </Content>
+            </MudTreeViewItem>
+        </ItemTemplate>
+    </MudTreeView>
+}
+else
+{
+    <MudProgressLinear Color="Color.Primary" Indeterminate="true" Class="my-0" />
+}
+
+

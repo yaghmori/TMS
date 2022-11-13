@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CreatingClientFailed" xml:space="preserve">
+    <value>ایجاد سیستم اطلاعاتی جدید با خطا روبرو شد.</value>
+  </data>
+  <data name="CreatingRoleFailed" xml:space="preserve">
+    <value>ایجاد نقش با خطا روبرو شد.</value>
+  </data>
+  <data name="ClientSuccessfullyCreated" xml:space="preserve">
+    <value>سیستم اطلاعاتی با موفقیت ایجاد گردید.</value>
+  </data>
+  <data name="ClientSuccessfullyDeleted" xml:space="preserve">
+    <value>سیستم اطلاعاتی با موفقیت حذف گردید.</value>
+  </data>
+  <data name="ClientSuccessfullyUpdated" xml:space="preserve">
+    <value>سیستم اطلاعاتی با موفقیت ویرایش شد.</value>
+  </data>
+  <data name="DeletingClientFailed" xml:space="preserve">
+    <value>حذف سیستم اطلاعاتی با خطا روبرو شد.</value>
+  </data>
+  <data name="DeletingRoleFailed" xml:space="preserve">
+    <value>حذف نقش با خطا روبرو شد.</value>
+  </data>
+  <data name="DeletingUserFailed" xml:space="preserve">
+    <value>حذف کاربر با خطا روبرو شد.</value>
+  </data>
+  <data name="DoYouForgotPassword" xml:space="preserve">
+    <value>کلمه عبور خود را فراموش کرده اید؟</value>
+  </data>
+  <data name="DoYouReallyWantToDeleteClient" xml:space="preserve">
+    <value>آیا از حذف این سیستم اطلاعاتی اطمینان دارید ؟ این عملیات غیر قابل بازگشت می باشد. </value>
+  </data>
+  <data name="DoYouReallyWantToDeleteRole" xml:space="preserve">
+    <value>آیا از حذف نقش '{0}' اطمینان دارید ؟ با حذف نقش دسترسی کاربرانی که این نقش را داشتند محدود خواهد شد.</value>
+  </data>
+  <data name="DoYouReallyWantToDeleteUser" xml:space="preserve">
+    <value>آیا از حذف کاربر '{0}' اطمینان دارید ؟ تمامی اطلاعات مرتبط با این کاربر حذف خواهد شد.</value>
+  </data>
+  <data name="EnterEmailToReciveForgotPasswordCode" xml:space="preserve">
+    <value>آدرس ایمیل مرتبط با حساب خود را وارد کنید و ایمیلی حاوی پیوندی برای بازنشانی رمز عبور خود دریافت خواهید کرد.</value>
+  </data>
+  <data name="IhaveReadAndAgreeToTheTermsAndConditions" xml:space="preserve">
+    <value>من شرایط و ضوابط را خوانده ام و موافق هستم.</value>
+  </data>
+  <data name="NotAuthorizedToAccessThisResource" xml:space="preserve">
+    <value>شما مجوز دسترسی به این منبع را ندارید.</value>
+  </data>
+  <data name="PleaseSelectClientToContinue" xml:space="preserve">
+    <value>لطفا برای ادامه یک سیستم اطلاعاتی را انتخاب کنید</value>
+  </data>
+  <data name="RegisterSuccessfull" xml:space="preserve">
+    <value>ثبت نام با موفقیت انجام شد.</value>
+  </data>
+  <data name="RegistrationFailed" xml:space="preserve">
+    <value>ثبت نام با خطا روبرو شده است. لطفا مجددا سعی کنید.</value>
+  </data>
+  <data name="RoleSuccessfullyCreated" xml:space="preserve">
+    <value>نقش با موفقیت ایجاد شد.</value>
+  </data>
+  <data name="RoleSuccessfullyDeleted" xml:space="preserve">
+    <value>حذف نقش با موفقیت انجام شد.</value>
+  </data>
+  <data name="RoleSuccessfullyUpdated" xml:space="preserve">
+    <value>نقش با موفقیت ویرایش شد.</value>
+  </data>
+  <data name="TheUsernameOrPasswordIsIncorrect" xml:space="preserve">
+    <value>نام کاربری یا کلمه عبور صحیح نمی باشد.</value>
+  </data>
+  <data name="UpdatingClientFailed" xml:space="preserve">
+    <value>ویرایش سیستم اطلاعاتی با خطا روبرو شد.</value>
+  </data>
+  <data name="UpdatingRoleFailed" xml:space="preserve">
+    <value>ویرایش نقش با خطا روبرو شد.</value>
+  </data>
+  <data name="UserAccountNotUpdated" xml:space="preserve">
+    <value>بروزرسانی حساب کاربری با مشکل روبرو شد.</value>
+  </data>
+  <data name="UserAccountUpdatedSuccessfully" xml:space="preserve">
+    <value>حساب کاربری با موفقیت بروزرسانی شد.</value>
+  </data>
+  <data name="UserPasswordUpdatedSuccessfully" xml:space="preserve">
+    <value>کلمه عبور با موفقیت تغییر یافت.</value>
+  </data>
+  <data name="UserPassworNotUpdated" xml:space="preserve">
+    <value>تغییر کلمه عبور با خطا روبرو شد.</value>
+  </data>
+  <data name="UserSuccessfullyDeleted" xml:space="preserve">
+    <value>کاربر با موفقیت حذف گردید.</value>
+  </data>
+  <data name="YouAreNotAuthorizedToAccessThisResource" xml:space="preserve">
+    <value>شما مجوز دسترسی به این قسمت را ندارید.</value>
+  </data>
+  <data name="DeleteAllSiloItemConfirmation" xml:space="preserve">
+    <value>با تایید این عملیات تمامی دیتاهای مربوط به سیلو شامل کلیه اطلاعات مربوط به تاریخچه دمای سنسور ها و همچنین اطلاعات مربوط به مپینگ (پیکربندی) پروژه بطور کلی و بصورت غیر قابل بازگشت حذف خواهد شد . 
+آیا از ادامه این عملیات اطمینان دارید  ؟</value>
+  </data>
+  <data name="DeleteAllSiloItemsCompletedSuccessfull" xml:space="preserve">
+    <value>تمام آیتم های سیلو با موفقیت حذف شدند.</value>
+  </data>
+  <data name="DeleteAllSiloItemsFailed" xml:space="preserve">
+    <value>حذف تمام آیتم های سیلو با خطا روبرو شد.</value>
+  </data>
+  <data name="DeleteSiloItemConfirmation" xml:space="preserve">
+    <value>با تایید این عملیات تمامی آیتتم های زیر مجموعه این {0}  شامل اطلاعات مربوط به مپینگ (پیکربندی) و تاریخچه دما بصورت غیر قابل بازگشت حذف خواهد شد . 
+آیا از تایید این عملیات اطمینان دارید  ؟</value>
+  </data>
+  <data name="DeleteSiloItemFailed" xml:space="preserve">
+    <value>حذف آیتم با خطا روبرو شد.</value>
+  </data>
+  <data name="DeleteSiloItemSuccessfull" xml:space="preserve">
+    <value>حذف آیتم با موفقیت انجام شد.</value>
+  </data>
+  <data name="CreatingSiloItemFailed" xml:space="preserve">
+    <value>افزودن آیتم با خطا روبرو شد.</value>
+  </data>
+  <data name="SiloItemsSuccessfullyAdded" xml:space="preserve">
+    <value>{0} آیتم با موفقیت افزوده شد. </value>
+  </data>
+  <data name="SiloItemSuccessfullyAdded" xml:space="preserve">
+    <value>آیتم با موفقیت افزوده شد .</value>
+  </data>
+  <data name="SiloItemSuccessfullyUpdated" xml:space="preserve">
+    <value>ویرایش با موفقیت انجام شد.</value>
+  </data>
+  <data name="UpdatingSiloItemFailed" xml:space="preserve">
+    <value>ویرایش با خطا روبرو شد.</value>
+  </data>
+  <data name="NoRecordFound" xml:space="preserve">
+    <value>هیچ داده ای یافت نشد</value>
+  </data>
+  <data name="AreYouSureYouWantToTerminateThisSession" xml:space="preserve">
+    <value>ایا از حذف این نشست اطمینان دارید ؟</value>
+  </data>
+  <data name="SessionSuccessfullyTerminated" xml:space="preserve">
+    <value>نشست با موفقیت حذف شد.</value>
+  </data>
+  <data name="TerminatingSessionFailed" xml:space="preserve">
+    <value>حذف نشست با خطا روبرو شد.</value>
+  </data>
+</root>

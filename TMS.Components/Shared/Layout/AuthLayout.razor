@@ -1,0 +1,17 @@
+﻿@inherits LayoutComponentBase
+<MudRTLProvider RightToLeft="false">
+
+    <MudThemeProvider Theme="ApplicationThemes.DefaultTheme" />
+    <MudDialogProvider />
+    <MudSnackbarProvider />
+
+    <MudContainer MaxWidth="MaxWidth.Small" Class="d-flex align-center" Style="height: 100vh;">
+            <div class="d-flex flex-column mud-width-full">
+                <MudPaper Class="pa-8" Width="100%">
+                    <MudIcon Icon="@Icons.Custom.Brands.MudBlazor" Size="Size.Large" Style="width:70px; height:70px;" />
+                    @Body
+                </MudPaper>
+            </div>
+
+    </MudContainer>
+</MudRTLProvider>

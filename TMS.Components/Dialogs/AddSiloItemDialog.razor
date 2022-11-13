@@ -1,0 +1,60 @@
+﻿@inherits BaseComponent
+
+<MudDialog>
+    <DialogContent>
+        <EditForm Model="@SiloItem" OnValidSubmit="SaveChangesSubmit">
+           IsModified: @context.IsModified();
+            IsValid: @context.Validate();
+            <DataAnnotationsValidator />
+            <div Class="d-flex flex-row gap-2">
+                <MudItem xs="8" md="9">
+                    <MudTextField @bind-Value="@SiloItem.Name" For="() => SiloItem.Name" Label="@_contextLocalizer["SiloItem.Name"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" />
+                </MudItem>
+                <MudItem xs="4" md="3">
+                    <MudTextField @bind-Value="@SiloItem.Index" For="() => SiloItem.Index" Label="@_contextLocalizer["SiloItem.Index"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" />
+                </MudItem>
+            </div>
+            <SiloItemPathComponent Items="@Ancestors" Class="mt-2 m-1" />
+            @if (SiloItem.ItemType == SiloItemTypeEnum.TempSensor || SiloItem.ItemType == SiloItemTypeEnum.HumiditySensor)
+            {
+                <MudExpansionPanels Elevation="2">
+                    <MudExpansionPanel Dense=true IsInitiallyExpanded=true Text="@_contextLocalizer["SiloItem.MappingInfo"]">
+                        <MudTextField @bind-Value="@SiloItem.Address" For="() => SiloItem.Address" Label="@_contextLocalizer["SiloItem.Address"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" Class="mb-2" />
+                        <MudTextField @bind-Value="@SiloItem.Rom" For="() => SiloItem.Rom" Label="@_contextLocalizer["SiloItem.Rom"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" Class="mb-2" />
+                        <MudTextField @bind-Value="@SiloItem.Box" For="() => SiloItem.Box" Label="@_contextLocalizer["SiloItem.Box"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" Class="mb-2" />
+                        <MudTextField @bind-Value="@SiloItem.Line" For="() => SiloItem.Line" Label="@_contextLocalizer["SiloItem.Line"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" Class="mb-2" />
+                        <div Class="d-flex flex-row gap-2 mb-5">
+                            <MudTextField @bind-Value="@SiloItem.Offset" For="() => SiloItem.Offset" Label="@_contextLocalizer["SiloItem.Offset"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" />
+                            <MudTextField @bind-Value="@SiloItem.FalseValueCount" For="() => SiloItem.FalseValueCount" Label="@_contextLocalizer["SiloItem.FalseValueCount"]" Margin="Margin.Dense" Variant="Variant.Outlined" Immediate="true" />
+                        </div>
+                    </MudExpansionPanel>
+                </MudExpansionPanels>
+            }
+            <div class="d-flex flex-row justify-content-end align-items-center mt-4   mb-2 gap-2">
+                @if (string.IsNullOrWhiteSpace(SiloItemId))
+                {
+                    <MudTextField @bind-Value="@SiloItem.Count" For="() => SiloItem.Count" Label="@_contextLocalizer["Count"]" Variant="Variant.Outlined" Margin="Margin.Dense" Style="width:70px;" Immediate="true" />
+                }
+                <div class="d-flex flex-row justify-content-end gap-2">
+                    <MudButton OnClick="Cancel">@_viewLocalizer["Cancel"]</MudButton>
+                    <MudButton Disabled="@(!context.Validate()  || !context.IsModified() || IsBusy)"
+                               ButtonType="ButtonType.Submit"
+                               Class="w-85"
+                               Variant="Variant.Filled"
+                               Color="Color.Primary">
+                        @if (IsBusy)
+                        {
+                            <MudProgressCircular Class="ms-n1" Size="Size.Small" Indeterminate="true" />
+                            <MudText Class="ms-2">@_viewLocalizer["Processing"]</MudText>
+                        }
+                        else
+                        {
+                            @_viewLocalizer["SaveChanges"].Value
+                        }
+                    </MudButton>
+                </div>
+            </div>
+        </EditForm>
+    </DialogContent>
+</MudDialog>
+

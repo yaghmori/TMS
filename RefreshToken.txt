@@ -1,0 +1,51 @@
+            if (response.StatusCode == HttpStatusCode.Unauthorized && request.Headers.Where(c => c.Key == "Authorization").Select(c => c.Value).Any(c => c.Any(p => p.StartsWith("Bearer"))))
+            {
+
+                //await sem.WaitAsync();
+
+
+                var tokenRequest = new HttpRequestMessage
+                {
+                    Method = HttpMethod.Post,
+                    RequestUri = new Uri(ApplicationConstants.ServerBaseAddress + EndPoints.RefreshToken),
+                    Content = new StringContent(JsonConvert.SerializeObject(new TokenRequest
+                    {
+                        Token = jwt_token,
+                        RefreshToken = refresh_token
+                    }), Encoding.UTF8, "application/json")
+                };
+
+
+                using (var refreshResponse = await base.SendAsync(tokenRequest, cancellationToken))
+                {
+                    var tokenResponse = new TokenResponse();
+                    var result = await refreshResponse.ToResult<TokenResponse>();
+                    if (result.Succeeded)
+                    {
+
+                        if (isPersistent)
+                            await _localStorage.SetItemAsync(ApplicationConstants.AccessToken, result.Data.AccessToken);
+                        else
+                            await _sessionStorage.SetItemAsync(ApplicationConstants.AccessToken, result.Data.AccessToken);
+
+                        await _localStorage.SetItemAsync(ApplicationConstants.RefreshToken, result.Data.RefreshToken);
+                        request.Headers.Remove("Authorization");
+                        request.Headers.Add("Authorization", "Bearer " + result.Data.AccessToken);
+
+                    }
+                    else
+                    {
+                        await _localStorage.RemoveItemAsync(ApplicationConstants.AccessToken);
+                        await _sessionStorage.RemoveItemAsync(ApplicationConstants.AccessToken);
+                        await _localStorage.RemoveItemAsync(ApplicationConstants.RefreshToken);
+                        request.Headers.Remove("Authorization");
+                    }
+
+
+                    //headers are set, so release:
+                    //sem.Release();
+
+                    //retry actual request with new tokens
+                    response = await base.SendAsync(request, cancellationToken);
+                }
+            }

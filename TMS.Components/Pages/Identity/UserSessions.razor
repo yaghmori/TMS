@@ -1,0 +1,42 @@
+﻿@page "/ActiveSessions/{UserId}"
+@inherits BaseComponent
+
+<div Class="d-flex flex-row align-items-center  justify-content-between  mb-3">
+    <MudHidden Breakpoint="Breakpoint.Xs">
+        <MudText Typo="Typo.h5" Color="Color.Primary">@_viewLocalizer["UserSessions"]</MudText>
+    </MudHidden>
+</div>
+
+
+
+<MudDataGrid T="UserSessionResponse"
+             Loading=IsBusy
+             Elevation="2"
+             ColumnResizeMode="ResizeMode.Column"
+             Items="ActiveSessionCollection"
+             ReadOnly="false"
+             EditTrigger="DataGridEditTrigger.Manual"
+             EditMode="DataGridEditMode.Form"
+             Hover="true" Dense="true" Striped="true"
+             FixedHeader="true">
+    <NoRecordsContent>
+        <div class="height:100px;">
+            <h6 class="text-secondary">@_messageLocalizer["NoRecordFound"]</h6>
+        </div>
+    </NoRecordsContent>
+
+    <Columns>
+        <Column T="UserSessionResponse" Field="@nameof(UserSessionResponse.Name)" Title="@_contextLocalizer["UserSession.Name"]" />
+        <Column T="UserSessionResponse" Field="@nameof(UserSessionResponse.LoginProvider)" Title="@_contextLocalizer["UserSession.LoginProvider"]" />
+        <Column T="UserSessionResponse" Field="@nameof(UserSessionResponse.RefreshTokenExpires)" Title="@_contextLocalizer["UserSession.RefreshTokenExpires"]" />
+        <Column Resizable="false" Context="rowData" Sortable="false" T="UserSessionResponse">
+            <CellTemplate>
+                <MudButtonGroup Color="Color.Primary" Variant="Variant.Text" Class="d-flex justify-end">
+                    <MudIconButton Color="@Color.Error" OnClick="()=>TerminateSession(rowData.Item)"><i class="fas fa-trash-can" /></MudIconButton>
+                </MudButtonGroup>
+            </CellTemplate>
+        </Column>
+    </Columns>
+</MudDataGrid>
+
+
